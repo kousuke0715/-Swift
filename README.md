@@ -75,7 +75,7 @@ struct ContentView: View {
                     in: Date()...,
                     displayedComponents: [.date, .hourAndMinute]
                 )
-                .datePickerStyle(.graphical)````
+                .datePickerStyle(.graphical)```
 この部分ではカレンダーが表示されておりそこから予約日時を選択できる。```.datePickerStyle(.graphical)```によりカレンダーを常に表示し続ける。
 ```
     var isBooked: Bool {
