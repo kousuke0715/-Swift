@@ -1,6 +1,6 @@
 # -Swift
 実家の散髪屋をより業務を減らすためにiosのアプリにより予約をアプリ内でおこなえるようにする。
-# -コード全体の流れ
+## -コード全体の流れ
 
 @main
 
@@ -15,7 +15,7 @@
 ├─ ContentView.swift
 
 └─ CutDetailSelectView.swift
-# -コードを各部分に分けて紹介していく
+# コードを各部分に分けて紹介していく
 ## アプリ本体
 ```
 import SwiftUI
@@ -30,7 +30,8 @@ struct KrsmaApp: App {
     }
 }
 ```
-# --予約データー
+## 予約データー
+```
 @Model
 class Reservation {
     var dateTime: Date
@@ -42,11 +43,15 @@ class Reservation {
         self.service = service
     }
 }
-# --日付け選択画面
+```
+## 日付け選択画面
+```
 struct ContentView: View {
     @Query private var records: [Reservation]
     @State private var selectedDate = Date()
-# --選択した日時がようやく済みか確認
+```
+## 選択した日時がようやく済みか確認
+```
     var isBooked: Bool {
         records.contains { reservation in
             Calendar.current.isDate(
@@ -69,7 +74,9 @@ struct ContentView: View {
                     displayedComponents: [.date, .hourAndMinute]
                 )
                 .datePickerStyle(.graphical)
-  # --予約状況
+```
+  ## 予約状況
+  ```
                 if isBooked {
                     Text("この日時は予約済みです")
                         .foregroundStyle(.red)
@@ -77,7 +84,9 @@ struct ContentView: View {
                     Text("この日時は予約できます")
                         .foregroundStyle(.green)
                 }
-# --予約可能な時だけ押せる
+```
+## 予約可能な時だけ押せる
+```
                 NavigationLink {
                     CutDetailSelectView(
                         selectedDate: selectedDate
@@ -87,7 +96,9 @@ struct ContentView: View {
                 }
                 .disabled(isBooked)
                 Divider()
-# --動作確認用:現在の予約一覧
+```
+## 動作確認用:現在の予約一覧
+```
                 Text("予約済み一覧")
                     .font(.headline)
                 List {
@@ -114,7 +125,9 @@ struct ContentView: View {
         }
     }
 }
-# --名前・メニュー選択画面
+```
+## 名前・メニュー選択画面
+```
 struct CutDetailSelectView: View {
     // 前の画面から受け取った日時
     let selectedDate: Date
@@ -134,7 +147,9 @@ struct CutDetailSelectView: View {
             Text("情報入力")
                 .font(.title)
                 .bold()
-# --選んだ日付を表示
+```
+## 選んだ日付を表示
+```
             Text(
                 selectedDate,
                 format: .dateTime
@@ -184,3 +199,4 @@ struct CutDetailSelectView: View {
         .navigationTitle("予約内容")
     }
 }
+```
