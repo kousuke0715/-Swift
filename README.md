@@ -237,7 +237,8 @@ Text(
                     }
                 }
             }
-```この部分でカットの選択肢をすべて出しそれをクリックすることで選択可能。
+```
+この部分でカットの選択肢をすべて出しそれをクリックすることで選択可能。
 ```
 Button("予約完了") {
                 let record = Reservation(
@@ -250,11 +251,13 @@ Button("予約完了") {
             }
 ```
 予約完了ボタンを押すと```record```としてデータを保存する。
-``` .disabled(
+```
+.disabled(
                 name.isEmpty ||
                 selectedService.isEmpty
             )
-```未選択であれば予約完了ボタンは押せない。
+```
+未選択であれば予約完了ボタンは押せない。
 ```
             Text(
                 selectedDate,
