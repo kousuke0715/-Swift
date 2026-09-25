@@ -63,19 +63,23 @@ struct ContentView: View {
 ## 選択した日時が予約済みか確認
 ```var isBooked:Bool```によりTrue,Falseで予約済みか判断する。
 ```records.contains```によりrecords内に条件に合うデータがあるのかを判断する。
-```Calendar.current.isDate(
+```
+Calendar.current.isDate(
                 reservation.dateTime,
                 equalTo: selectedDate,
                 toGranularity: .minute
-            )```
+            )
+```
 により秒数は切り捨て合致するかどうかを判断する。
-```DatePicker(
+```
+DatePicker(
                     "日時を選択",
                     selection: $selectedDate,
                     in: Date()...,
                     displayedComponents: [.date, .hourAndMinute]
                 )
-                .datePickerStyle(.graphical)```
+                .datePickerStyle(.graphical)
+```
 この部分ではカレンダーが表示されておりそこから予約日時を選択できる。
 ```.datePickerStyle(.graphical)```によりカレンダーを常に表示し続ける。
 ```
