@@ -16,7 +16,7 @@
 
 └─ CutDetailSelectView.swift
 # -コードを各部分に分けて紹介していく
-# --アプリ本体
+## アプリ本体
 ,,,
 import SwiftUI
 import SwiftData
