@@ -31,6 +31,15 @@ struct KrsmaApp: App {
 }
 ```
 ## 予約データー型
+```dateTime:Date```
+にすることで予約日時を設定する型。
+データの方には普段使う。
+String → 文字列
+Int    → 整数
+Bool   → true / false
+以外にも
+Date   → 日付・時刻
+がある。
 ```
 @Model
 class Reservation {
