@@ -1,6 +1,7 @@
 # -Swift
 実家の散髪屋をより業務を減らすためにiosのアプリにより予約をアプリ内でおこなえるようにする。
 # -コード全体の流れ
+
 @main
 
 └─KrsmaApp.swift
@@ -16,26 +17,17 @@
 └─ CutDetailSelectView.swift
 # -コードを各部分に分けて紹介していく
 # --アプリ本体
+
 import SwiftUI
-
 import SwiftData
-
 @main
-
 struct KrsmaApp: App {
-
     var body: some Scene {
-    
         WindowGroup {
-        
             ContentView()
-            
         }
-        
         .modelContainer(for: Reservation.self)
-        
     }
-    
 }
 
 # --予約データー
