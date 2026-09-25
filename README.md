@@ -67,8 +67,9 @@ struct ContentView: View {
                 reservation.dateTime,
                 equalTo: selectedDate,
                 toGranularity: .minute
-            )```により秒数は切り捨て合致するかどうかを判断する。
-````DatePicker(
+            )```
+により秒数は切り捨て合致するかどうかを判断する。
+```DatePicker(
                     "日時を選択",
                     selection: $selectedDate,
                     in: Date()...,
