@@ -30,7 +30,7 @@ struct KrsmaApp: App {
     }
 }
 ```
-## 予約データー
+## 予約データー型
 ```
 @Model
 class Reservation {
