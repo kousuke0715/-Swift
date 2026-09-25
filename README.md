@@ -161,6 +161,7 @@ DatePicker(
 }
 ```
 ## 名前・メニュー選択画面
+```let selectedDate:Date```でCutDetailSelectView```に渡して使用できるようにした。
 ```
 struct CutDetailSelectView: View {
     // 前の画面から受け取った日時
@@ -170,11 +171,34 @@ struct CutDetailSelectView: View {
     @State private var name = ""
     @State private var selectedService = ""
     let services: [String] = [
-        "カット大人：4000円",
-        "カット子供：2500円",
-        "パーマ：8000円",
-        "ストレートパーマ：10000円",
-        "カラー：7000円"
+         "調髪：4400円",
+    "調髪顔剃り無し：4100円",
+    "調髪のみ：3600円",
+    "アイロン：4900円",
+    "SPなし：4100円",
+    "顔剃りSP：3900円",
+    "SPセット：2600円",
+    "顔剃り：2600円",
+    "セット：1200円",
+    "丸刈り：3300円",
+    "女性顔剃り：3300円",
+    "高校生調髪：3800円",
+    "高校生カット：3600円",
+    "スキンフェイド：6400円",
+    "中学生調髪：3300円",
+    "中学生丸刈り：2100円",
+    "小学生調髪：2700円",
+    "小学生丸刈り：1800円",
+    "乳児：3100円",
+    "パーマ：9400円〜",
+    "パーマ染：15000円",
+    "アイパー：8100円〜",
+    "Sパーマ：13000円",
+    "Sパーマ前：7900円",
+    "Sパーマ染：15000円",
+    "Cut 白髪染：6600円",
+    "Cut カラー：7600円",
+    "白髪染めのみ：4200円"
     ]
     var body: some View {
         VStack(spacing: 20) {
@@ -183,6 +207,53 @@ struct CutDetailSelectView: View {
                 .bold()
 ```
 ## 選んだ日付を表示
+```
+Text(
+                selectedDate,
+                format: .dateTime
+                    .year()
+                    .month()
+                    .day()
+                    .hour()
+                    .minute()
+            )
+```で読みやすい形に変えている。
+```
+ Text("メニューを選択")
+                .font(.headline)
+            List {
+                ForEach(services, id: \.self) { service in
+                    Button {
+                        selectedService = service
+                    } label: {
+                        HStack {
+                            Text(service)
+                            Spacer()
+                            if selectedService == service {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                }
+            }
+```この部分でカットの選択肢をすべて出しそれをクリックすることで選択可能。
+```
+Button("予約完了") {
+                let record = Reservation(
+                    dateTime: selectedDate,
+                    name: name,
+                    service: selectedService
+                )
+                modelContext.insert(record)
+                dismiss()
+            }
+```
+予約完了ボタンを押すと```record```としてデータを保存する。
+``` .disabled(
+                name.isEmpty ||
+                selectedService.isEmpty
+            )
+```未選択であれば予約完了ボタンは押せない。
 ```
             Text(
                 selectedDate,
