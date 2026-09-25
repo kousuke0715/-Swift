@@ -3,7 +3,7 @@
 # -コード全体の流れ
 @main
 
-KrsmaApp.swift
+└─KrsmaApp.swift
 
 @Model
 
@@ -12,5 +12,6 @@ KrsmaApp.swift
 @View
 
 ├─ ContentView.swift
+
 └─ CutDetailSelectView.swift
 # -コードを各部分に分けて紹介していく
