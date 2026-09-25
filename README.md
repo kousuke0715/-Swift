@@ -17,16 +17,27 @@
 # -コードを各部分に分けて紹介していく
 # --アプリ本体
 import SwiftUI
+
 import SwiftData
+
 @main
+
 struct KrsmaApp: App {
+
     var body: some Scene {
+    
         WindowGroup {
+        
             ContentView()
+            
         }
+        
         .modelContainer(for: Reservation.self)
+        
     }
+    
 }
+
 # --予約データー
 @Model
 class Reservation {
