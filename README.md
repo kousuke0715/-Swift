@@ -53,13 +53,29 @@ class Reservation {
     }
 }
 ```
-## 日付け選択画面
+# 日付け選択画面
+## データの使用方針
 ```
 struct ContentView: View {
     @Query private var records: [Reservation]
     @State private var selectedDate = Date()
 ```
-## 選択した日時がようやく済みか確認
+## 選択した日時が予約済みか確認
+```var isBooked:Bool```によりTrue,Falseで予約済みか判断する。
+```records.contains```によりrecords内に条件に合うデータがあるのかを判断する。
+``` Calendar.current.isDate(
+                reservation.dateTime,
+                equalTo: selectedDate,
+                toGranularity: .minute
+            )```により秒数は切り捨て合致するかどうかを判断する。
+````DatePicker(
+                    "日時を選択",
+                    selection: $selectedDate,
+                    in: Date()...,
+                    displayedComponents: [.date, .hourAndMinute]
+                )
+                .datePickerStyle(.graphical)````
+この部分ではカレンダーが表示されておりそこから予約日時を選択できる。```.datePickerStyle(.graphical)```によりカレンダーを常に表示し続ける。
 ```
     var isBooked: Bool {
         records.contains { reservation in
@@ -85,6 +101,7 @@ struct ContentView: View {
                 .datePickerStyle(.graphical)
 ```
   ## 予約状況
+```isBooked```がTrue,Falseにより予約されているか判断し分かりやすく色を変えて表示している。
   ```
                 if isBooked {
                     Text("この日時は予約済みです")
@@ -95,6 +112,8 @@ struct ContentView: View {
                 }
 ```
 ## 予約可能な時だけ押せる
+予約可能な場合に```CutDetailSelectView```を使い```selectedDate```を渡す。
+```.disabled(isBooked)```によりisBookerがTrueの場合押せなくなる。
 ```
                 NavigationLink {
                     CutDetailSelectView(
